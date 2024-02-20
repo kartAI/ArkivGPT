@@ -1,0 +1,9 @@
+[submodule "ArkivGPT_Gateway"]
+	path = ArkivGPT_Gateway
+	url = git@github.com:kartAI/ArkivGPT_Gateway.git
+[submodule "ArkivGPT_Frontend"]
+	path = ArkivGPT_Frontend
+	url = git@github.com:kartAI/ArkivGPT-Frontend.git
+[submodule "ArkivGPT_Processor"]
+	path = ArkivGPT_Processor
+	url = git@github.com:kartAI/ArkivGPT-Processor.git
