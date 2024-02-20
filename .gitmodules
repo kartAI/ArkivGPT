@@ -1,0 +1,3 @@
+[submodule "ArkivGPT_Gateway"]
+	path = ArkivGPT_Gateway
+	url = git@github.com:kartAI/ArkivGPT_Gateway.git
