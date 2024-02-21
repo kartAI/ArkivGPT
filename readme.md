@@ -8,19 +8,19 @@ Clone this repository
 git clone git@github.com:kartAI/ArkivGPT.git
 ```
 
-Update the project to get the required submodules
-```bash
-git submodule update --init --recursive
-```
-
 Change dir into the folder
 ``` bash
 cd ArkivGPT
 ```
 
+Update the project to get the required submodules
+```bash
+git submodule update --init --recursive
+```
+
 Run the docker compose files
 ``` bash
-docker compose up
+docker compose up --build
 ```
 
 ## Usage
