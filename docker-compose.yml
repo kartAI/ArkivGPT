@@ -13,8 +13,6 @@ services:
       replicas: 1
     volumes:
       - ./Files/:/processor/Files
-    #ports:
-      #- 5001:5001
 
   arkivgpt-gateway:
     image: localhost:5000/arkivgpt-gateway:latest
@@ -28,26 +26,22 @@ services:
       - GRPC_SERVER_ADDRESS=http://arkivgpt-processor:5001
     volumes:
       - ./Files/:/gateway/Files
-    #ports:
-     # - 5000:8080
 
   frontend:
     image: localhost:5000/frontend:latest
     build:
       context: ./ArkivGPT_Frontend
       dockerfile: Dockerfile
-    #ports:
-      #- 3000:3000
 
-  #arkivgpt-ocr:
-  #  image: localhost:5000/arkivgpt-ocr:latest
-  #  build:
-  #    context: ./ArkivGPT_OCR
-  #    dockerfile: Dockerfile
-  #  depends_on:
-  #    - arkivgpt-processor
-  #  volumes:
-  #    - ./Files/:/app/Files
+  arkivgpt-ocr:
+   image: localhost:5000/arkivgpt-ocr:latest
+   build:
+     context: ./ArkivGPT_OCR
+     dockerfile: Dockerfile
+   depends_on:
+     - arkivgpt-processor
+   volumes:
+     - ./Files/:/app/Files
 
 
   nginx:
