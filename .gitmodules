@@ -7,3 +7,6 @@
 [submodule "ArkivGPT_Processor"]
 	path = ArkivGPT_Processor
 	url = git@github.com:kartAI/ArkivGPT-Processor.git
+[submodule "ArkivGPT_OCR"]
+	path = ArkivGPT_OCR
+	url = git@github.com:kartAI/ArkivGPT_OCR.git
