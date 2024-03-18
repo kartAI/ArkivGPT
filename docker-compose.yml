@@ -2,47 +2,56 @@ version: '3.8'
 services:
 
   arkivgpt-processor:
-    container_name: arkivgpt-processor
+    image: localhost:5000/arkivgpt-processor:latest
     build:
       context: ./
       dockerfile: ArkivGPT_Processor/Dockerfile
-    networks:
-      - grpc-network
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - GRPC_SERVER_ADDRESS=http://arkivgpt-ocr:5001
+    deploy:
+      replicas: 1
+    volumes:
+      - ./Files/:/service/Files
     #ports:
       #- 5001:5001
 
   arkivgpt-gateway:
-    container_name: arkivgpt-gateway
+    image: localhost:5000/arkivgpt-gateway:latest
     build:
-      context: ./ArkivGPT_Gateway
-      dockerfile: Dockerfile
+        context: ./ArkivGPT_Gateway
+        dockerfile: Dockerfile
     depends_on:
       - arkivgpt-processor
-    networks:
-      - grpc-network
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - GRPC_SERVER_ADDRESS=http://arkivgpt-processor:5001
+    volumes:
+      - ./Files/:/gateway/Files
     #ports:
      # - 5000:8080
 
   frontend:
-    container_name: arkivgpt-frontend
+    image: localhost:5000/frontend:latest
     build:
       context: ./ArkivGPT_Frontend
       dockerfile: Dockerfile
-    networks:
-      - grpc-network
-    depends_on:
-      - arkivgpt-processor
-      - arkivgpt-gateway
     #ports:
       #- 3000:3000
 
+  #arkivgpt-ocr:
+  #  image: localhost:5000/arkivgpt-ocr:latest
+  #  build:
+  #    context: ./ArkivGPT_OCR
+  #    dockerfile: Dockerfile
+  #  depends_on:
+  #    - arkivgpt-processor
+  #  volumes:
+  #    - ./Files/:/app/Files
+
+
   nginx:
-    image: nginx:latest
+    image: docker.io/nginx:latest
     container_name: arkivgpt-nginx
     volumes:
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
@@ -51,11 +60,6 @@ services:
     ports:
       - "80:80"
       #- "443:443"
-    networks:
-      - grpc-network
     depends_on:
-      - frontend
+      - frontend 
 
-networks:
-  grpc-network:
-    driver: bridge
