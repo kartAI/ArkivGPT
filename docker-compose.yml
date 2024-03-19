@@ -41,7 +41,7 @@ services:
    depends_on:
      - arkivgpt-processor
    volumes:
-     - ./Files/:/app/Files
+     - ./Files/:/ocr/Files
 
 
   nginx:
