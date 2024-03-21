@@ -10,7 +10,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - GRPC_SERVER_ADDRESS=http://arkivgpt-ocr:5001
     deploy:
-      replicas: 1
+      replicas: 2
     volumes:
       - ./Files/:/processor/Files
 
@@ -40,6 +40,8 @@ services:
      dockerfile: Dockerfile
    depends_on:
      - arkivgpt-processor
+   deploy:
+    replicas: 4
    volumes:
      - ./Files/:/ocr/Files
 
