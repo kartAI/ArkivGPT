@@ -19,8 +19,6 @@ services:
     build:
         context: ./ArkivGPT_Gateway
         dockerfile: Dockerfile
-    depends_on:
-      - arkivgpt-processor
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - GRPC_SERVER_ADDRESS=http://arkivgpt-processor:5001
@@ -38,8 +36,6 @@ services:
    build:
      context: ./ArkivGPT_OCR
      dockerfile: Dockerfile
-   depends_on:
-     - arkivgpt-processor
    deploy:
     replicas: 4
    volumes:
@@ -56,6 +52,8 @@ services:
     ports:
       - "80:80"
       #- "443:443"
-    depends_on:
-      - frontend 
+    restart: always
+    # depends_on:
+    #   - frontend 
+    #   - arkivgpt-gateway
 
