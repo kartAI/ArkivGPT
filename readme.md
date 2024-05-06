@@ -1,38 +1,54 @@
 # ArkivGPT
+
 This repo contains the files for the ArkivGPT project. The project is to create summaries of construction cases from archives. The project uses docker containers to run the different parts of the system. The system consists of a frontend, gateway, processor and OCR system. The frontend is the web UI presented to the user. The gateway is the API gateway system. The processor is the system talking to OCR, GeoDoc and the GPT. The OCR is the OCR system.
 
 ## Prerequisites
+
 - Docker
 - Docker Compose
 - GeoDoc clientid and key
-- OpenAI GPT key and endpoint
+- OpenAI GPT key, endpoint and deployment name
 
 ## Configuration
-Create a GeoDoc.clientid, GeoDoc.key, GPT.key and GPT.endpoint file in the root of the project. The GeoDoc files should contain the clientid and key for the GeoDoc API. The GPT files should contain the key and endpoint for the GPT API.
 
+Create the following files:
+
+- GeoDoc.clientid
+- GeoDoc.key
+- GPT.key
+- GPT.endpoint
+- GPT.deploymentName
+
+in the root of the project. The GeoDoc files should contain the clientid and key for the GeoDoc API. The GPT files should contain the key, endpoint and deployment name for the GPT API.
 
 ## Installation
+
 Clone this repository
+
 ``` bash
 git clone git@github.com:kartAI/ArkivGPT.git
 ```
 
 Change dir into the folder
+
 ``` bash
 cd ArkivGPT
 ```
 
 Update the project to get the required submodules
+
 ```bash
 git submodule update --init --recursive
 ```
 
 Run the docker compose files
+
 ``` bash
 docker compose up --build
 ```
 
 ## Usage
+
 The frontend should now be accessible at
 [http://localhost](http://localhost)
 
@@ -42,16 +58,20 @@ Swagger API reference is accessible at
 The API itself is accessible at
 [http://localhost/api/](http://localhost/api/)
 
-
 ## System Structure
+
 ### Frontend
+
 The web UI presented to the user
 
 ### Gateway
+
 The API gateway system
 
 ### Processor
+
 The processor talking to OCR, GeoDoc and the GPT
 
 ### OCR
+
 The OCR system
