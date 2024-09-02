@@ -10,7 +10,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - GRPC_SERVER_ADDRESS=http://arkivgpt-ocr:5001
     deploy:
-      replicas: 2
+      replicas: 1
     volumes:
       - ./Files/:/processor/Files
 
